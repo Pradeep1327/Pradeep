@@ -45,7 +45,16 @@ for(i=0; i<10; i++){
  if (!overlapping){
    circleArray.push({x:x1,y:y1, r:r1, color:color1,dx:dx1, dy:dy1 });
  }
+ function getDistance(x2,y3,x2,y2){
 
+    let xDistance = x2 - x3;
+    let yDistance = y2 - y3;
+   return Math.sqrt(Math.pow(xDistance,2)+ Math.pow(yDistance,2))
+ }
+ var canvas=document.getElementById('canvas');
+ let sel={
+   x: undefined,
+   y: undefined};
 
  function ball1(i){
 
@@ -56,29 +65,7 @@ for (i=0; i<circleArray.length;i++){
         context.fill();
         context.stroke();
 }}
-function getDistance(x2,y2,x3,y3){
 
-   let xDistance = (x2-300) - (x3-300);
-   let yDistance = (y2-80) - (y3-80);
-  return Math.sqrt(Math.pow(xDistance,2)+ Math.pow(yDistance,2))
-}
-var canvas=document.getElementById('canvas');
-let sel={
-  x: undefined,
-  y: undefined};
-
-window.addEventListener('click',function(e){
-  sel.x = e.clientX;
-  sel.y = e.clientY;
-
-for(i=0; i<circleArray.length; i++){
-
-if(getDistance(e.clientX,e.clientY, circleArray[i].x,circleArray[i].y) < circleArray[i].r + circleArray[i].r){
-  circleArray.splice(i,1);
-
-}
-
-}})
 function animation1(){
 
 
@@ -97,7 +84,18 @@ function animation1(){
 }
 }}
 
+window.addEventListener('click',function(e){
+  sel.x = e.clientX;
+  sel.y = e.clientY;
 
+for(i=0; i<circleArray.length; i++){
+
+if(getDistance(e.clientX,e.clientY, circleArray[i].x,circleArray[i].y) < circleArray[i].r + circleArray[i].r){
+  circleArray.splice(i,1);
+
+}
+
+}})
 
 
 }
